@@ -13,7 +13,7 @@ import numpy as np
 from genus.Worker import Worker
 
 
-class ProteineWorker(Worker):
+class ProteinWorker(Worker):
     ''' class for proteine genus analysis'''
 
     def map(self):

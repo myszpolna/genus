@@ -25,7 +25,7 @@ def data_analysis(worker_class, input_class, config):
 
 
 def proteins_analysis(config):
-    return data_analysis(genus.ProteineWorker, genus.ProteineData, config)
+    return data_analysis(genus.ProteinWorker, genus.ProteinData, config)
 
 
 def rna_analysis(config):

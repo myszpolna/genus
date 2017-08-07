@@ -108,11 +108,12 @@ class RNAData(InputData):
                             if nnt in self.info['tab_types']:
                                 if nnt in DOUBLE_NAMES:
                                     nnt = self.__change_letters(nnt)
-                                dane.append([int(data_line[5]),
-                                             int(data_line[15]),
-                                             data_line[4],
-                                             data_line[14],
-                                             nnt])
+                                if int(data_line[5]) > 0 and int(data_line[15]) > 0:
+                                    dane.append([int(data_line[5]),
+                                                 int(data_line[15]),
+                                                 data_line[4],
+                                                 data_line[14],
+                                                 nnt])
                             else:
                                 self.errors['types'].append([nr, data_line])
         return dane
