@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
-''' Worker abstract class definition
+'''
+    Worker abstract class definition
 '''
 # Authors: Sebastian Zając  <s.zajac@uksw.edu.pl>
 #          Piotr Sułkowski  <psulkows@fuw.edu.pl>

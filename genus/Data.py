@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
-''' Input Data abstract class definition
+'''
+    Input Data abstract class definition
 '''
 # Authors: Sebastian Zając  <s.zajac@uksw.edu.pl>
 #          Piotr Sułkowski  <psulkows@fuw.edu.pl>
