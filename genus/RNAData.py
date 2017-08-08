@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-''' RNA data class definition
+u''' RNA data class definition
     read all data from two columns files in directory
 
     !!! Data should by like in csv file from
@@ -46,7 +46,7 @@ DOUBLE_NAMES = ['cHW', 'tHW', 'cSW', 'tSW', 'cSH', 'tSH']
 
 
 class RNAData(InputData):
-    '''Load RNA data '''
+    u'''Load RNA data '''
 
     def __init__(self, path_dir, tab_types=TAB_TYPES
                  ):
@@ -63,6 +63,7 @@ class RNAData(InputData):
 
     @staticmethod
     def __check_backbond(back, in_back, out_back):
+        '''get name of backbond'''
         if in_back == back:
             if out_back == in_back:
                 return True
@@ -72,7 +73,7 @@ class RNAData(InputData):
             return False
 
     def __check_line_b(self, line):
-        '''Check backbond is ok'''
+        u'''Check backbond is ok'''
         # set backbond from first element
         if not self.info['backbond']:
             self.info['backbond'] = line[3]
@@ -83,6 +84,7 @@ class RNAData(InputData):
 
     @staticmethod
     def __change_letters(string):
+        u'''change three letters'''
         first, second, third = string[0], string[1], string[2]
         return str(first) + str(third) + str(second)
 
@@ -120,7 +122,7 @@ class RNAData(InputData):
 
     @classmethod
     def generate_inputs(cls, config):
-        '''read all files in dir with ends'''
+        u'''read all files in dir with ends'''
         data_dir = config['data_dir']
         end = config['end_file']
         if config['tab_types']:

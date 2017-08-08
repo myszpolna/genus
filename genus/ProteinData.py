@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-''' Protein data class definition
+u''' Protein data class definition
     read all data from two columns files in directory
 
     config:
@@ -26,17 +26,17 @@ from genus.Data import InputData
 
 
 class ProteinData(InputData):
-    '''Load proteines from directory with data'''
+    u'''Load proteines from directory with data'''
 
     def __init__(self, path_dir):
-        ''' init Proteine '''
+        u''' init Proteine '''
         super().__init__()
         self.path = path_dir
         num = len(self.path.split('/'))
-        self.name = self.path.split('/')[num-1][:-4]
+        self.name = self.path.split('/')[num - 1][:-4]
 
     def read(self):
-        ''' read two columns data'''
+        u''' read two columns data'''
         data = []
         result = []
         with open(self.path) as file:
@@ -51,7 +51,7 @@ class ProteinData(InputData):
 
     @classmethod
     def generate_inputs(cls, config):
-        '''read all files in dir with ends'''
+        u'''read all files in dir with ends'''
         data_dir = config['data_dir']
         end = config['end_file']
         for name in [f for f in listdir(data_dir) if f.endswith(end)]:

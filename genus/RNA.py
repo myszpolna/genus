@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-'''
+u'''
     RNA worker class definition.
     Load data, clean and compute genus
     for all structure.
@@ -34,10 +34,10 @@ from genus.stat import FrequencyList as fl
 
 
 class RNAWorker(Worker):
-    ''' class for proteine genus analysis'''
+    u''' class for proteine genus analysis'''
 
     def map(self):
-        ''' map work for one protein '''
+        u''' map work for one protein '''
         self.name = self.input_data.name
         data = self.input_data.read()
         if len(data) > 1:
@@ -54,7 +54,7 @@ class RNAWorker(Worker):
 
     @staticmethod
     def compute_length(tab):
-        '''length compute static method'''
+        u'''length compute static method'''
         jeden = []
         for row in tab:
             jeden.append(row[0])
@@ -66,6 +66,7 @@ class RNAWorker(Worker):
 
     @staticmethod
     def __devide_data(tab):
+        u'''devide data for info'''
         acids = []
         types = []
         for element in tab:
@@ -75,7 +76,7 @@ class RNAWorker(Worker):
         return acids, types
 
     def __clear(self, tab):
-        ''' clear data  '''
+        u''' clear data  '''
         tab1 = self.__change(tab)
         tab1 = self.__identical_chords(tab1)
         tab1 = self.__double_chords(tab1)
@@ -84,25 +85,25 @@ class RNAWorker(Worker):
 
     @staticmethod
     def __change(tab):
-        ''' change all chords from left to right'''
+        u''' change all chords from left to right'''
         result = [[row[1], row[0], row[3], row[2], row[4]] if row[0] > row[
             1] else row for row in tab]
         return result
 
     @staticmethod
     def __identical_chords(tab):
-        ''' remove identical chords '''
+        u''' remove identical chords '''
         return sorted([list(x) for x in set(tuple(x) for x in tab)])
 
     @staticmethod
     def __double_chords(tab):
-        ''' remove in = out chords'''
+        u''' remove in = out chords'''
         result = [row for row in tab if row[0] != row[1]]
         return result
 
     @staticmethod
     def __zero_remove(tab):
-        '''remove zero from data '''
+        u'''remove zero from data '''
         check = False
         for row in tab:
             if 0 in row:

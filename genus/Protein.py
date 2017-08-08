@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-'''
+u'''
     Protein worker class definition.
     Load data, clean and compute genus
     for all structure.
@@ -35,10 +35,10 @@ from genus.Worker import Worker
 
 
 class ProteinWorker(Worker):
-    ''' class for proteine genus analysis'''
+    u''' class for proteine genus analysis'''
 
     def map(self):
-        ''' map work for one protein '''
+        u''' map work for one protein '''
         self.name = self.input_data.name
         data = self.input_data.read()
         self.length = self.compute_length(data)
@@ -47,7 +47,7 @@ class ProteinWorker(Worker):
         self.genus = self.compute_genus()
 
     def __clear(self, tab):
-        ''' clear data  '''
+        u''' clear data  '''
         tab1 = self.__change(tab)
         tab1 = self.__identical_chords(tab1)
         tab1 = self.__double_chords(tab1)
@@ -61,26 +61,26 @@ class ProteinWorker(Worker):
 
     @staticmethod
     def __change(tab):
-        ''' change all chords from left to right'''
+        u''' change all chords from left to right'''
         result = [[row[1], row[0]] if row[0] > row[
             1] else [row[0], row[1]] for row in tab]
         return result
 
     @staticmethod
     def __identical_chords(tab):
-        ''' remove identical chords '''
+        u''' remove identical chords '''
         result = [list(x) for x in set(tuple(x) for x in tab)]
         return sorted(result)
 
     @staticmethod
     def __double_chords(tab):
-        ''' remove in = out chords'''
+        u''' remove in = out chords'''
         result = [row for row in tab if row[0] != row[1]]
         return result
 
     @staticmethod
     def __zero_remove(tab):
-        '''remove zero from data '''
+        u'''remove zero from data '''
         result = np.array(tab)
         if 0 in result:
             result = result + 1

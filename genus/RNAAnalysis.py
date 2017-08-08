@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 u'''
-    Protein worker class definition.
+    RNA worker class definition.
     Devide from 5' to 3' and analyse
+    with different types
 '''
 # Authors: Sebastian Zając  <s.zajac@uksw.edu.pl>
 #          Piotr Sułkowski  <psulkows@fuw.edu.pl>
@@ -15,8 +16,8 @@ import numpy as np
 from genus.Worker import Worker
 
 
-class ProteinAnalysisWorker(Worker):
-    u''' class for devided proteine analysis'''
+class RNAAnalysisWorker(Worker):
+    u''' class for devided RNA analysis'''
 
     def map(self):
         u''' map work for one protein '''
@@ -40,7 +41,6 @@ class ProteinAnalysisWorker(Worker):
 
     @staticmethod
     def __compute_info(tab):
-        u''' compute min, max, length, nr chords'''
         new_tab = np.array(tab)
         chords = len(tab)
         maxi = new_tab.max()
@@ -94,7 +94,6 @@ class ProteinAnalysisWorker(Worker):
         return b1_b2_list
 
     def devide_and_compute(self, mini, maxi, tab):
-        u'''Devide data and compute genus for all data +1'''
         b1_b2_sum = 0
         counter = 0
         genuses = []

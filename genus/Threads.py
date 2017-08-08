@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-'''
+u'''
 Class for Thread
 '''
 # Authors: Sebastian Zając  <s.zajac@uksw.edu.pl>
@@ -12,7 +12,7 @@ from threading import Thread
 
 
 class FactorizeThread(Thread):
-
+    u''' muslti thread for map() function'''
     def __init__(self, worker):
         super().__init__()
         self.worker = worker

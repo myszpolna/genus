@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-'''
+u'''
     Worker abstract class definition
 '''
 # Authors: Sebastian Zając  <s.zajac@uksw.edu.pl>
@@ -13,7 +13,7 @@ from itertools import chain
 
 
 class Worker(object):
-    ''' Worker abstract class '''
+    u''' Worker abstract class '''
 
     def __init__(self, input_data):
         self.input_data = input_data
@@ -22,12 +22,12 @@ class Worker(object):
         self.info = {}
 
     def map(self):
-        ''' abstract map method'''
+        u''' abstract map method'''
         raise NotImplementedError
 
     @classmethod
     def create_workers(cls, input_class, config):
-        ''' workers creator'''
+        u''' workers creator'''
         workers = []
         for input_data in input_class.generate_inputs(config):
             workers.append(cls(input_data))
@@ -35,7 +35,7 @@ class Worker(object):
 
     @staticmethod
     def przelicznik(tab):
-        ''' remove empty spots'''
+        u''' remove empty spots'''
         jeden = list(chain.from_iterable((row[0], row[1]) for row in tab))
         for i in range(1, max(jeden)):
             if i not in jeden and i < max(jeden):
@@ -49,7 +49,7 @@ class Worker(object):
 
     @staticmethod
     def __bifurcations_part(tab, b_par, bif):
-        ''' part of biff function '''
+        u''' part of biff function '''
         while True:
             log = False
             for k in range(b_par - 1):
@@ -62,7 +62,7 @@ class Worker(object):
         return tab
 
     def __resolve_bifurcations(self, tab, n_chords):
-        ''' Methods for resolve biffurcations in structure '''
+        u''' Methods for resolve biffurcations in structure '''
         for i in range(1, 2 * n_chords):
             bif1 = []
             bif2 = []
@@ -95,7 +95,7 @@ class Worker(object):
 
     @staticmethod
     def genus_one_backbone(tab):
-        '''compute genus from clean data '''
+        u'''compute genus from clean data '''
         n_chords = len(tab)
         n_spots = 4 * n_chords
         remaining_chain = [1] * n_spots
@@ -148,7 +148,7 @@ class Worker(object):
         return self.__resolve_bifurcations(self.przelicznik(tab), len(tab))
 
     def compute_genus(self):
-        ''' methods for genus compute from self.data
+        u''' methods for genus compute from self.data
             You can use them only if You have self.cl_data
             Returns
             -------

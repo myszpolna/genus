@@ -13,7 +13,7 @@ from genus.Threads import FactorizeThread
 
 
 def data_analysis(worker_class, input_class, config):
-    '''helper for Thread with map() method'''
+    u'''helper for Thread with map() method'''
     threads = []
     workers = worker_class.create_workers(input_class, config)
     for worker in workers:
@@ -24,22 +24,27 @@ def data_analysis(worker_class, input_class, config):
         thread.join()
     return workers
 
+
 def protein_structure(config):
-    '''run proteins deviding and analysis'''
-    return data_analysis(genus.ProteinAnalysisWorker, genus.ProteinData, config)
+    u'''run proteins deviding and analysis'''
+    return data_analysis(genus.ProteinAnalysisWorker,
+                         genus.ProteinData, config)
+
 
 def proteins_analysis(config):
-    '''run proteins analysis from directory'''
-    return data_analysis(genus.ProteinWorker, genus.ProteinData, config)
+    u'''run proteins analysis from directory'''
+    return data_analysis(genus.ProteinWorker,
+                         genus.ProteinData, config)
 
 
 def rna_analysis(config):
-    '''run RNA analysis from directory'''
-    return data_analysis(genus.RNAWorker, genus.RNAData, config)
+    u'''run RNA analysis from directory'''
+    return data_analysis(genus.RNAWorker,
+                         genus.RNAData, config)
 
 
 def results(data):
-    'helper to get info for plots'
+    u'''helper to get info for plots'''
     lengths = []
     chords = []
     genuses = []

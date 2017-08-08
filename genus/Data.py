@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-'''
+u'''
     Input Data abstract class definition
 '''
 # Authors: Sebastian Zając  <s.zajac@uksw.edu.pl>
@@ -11,13 +11,13 @@
 
 
 class InputData(object):
-    '''Abstract class of Input Data '''
+    u'''Abstract class of Input Data '''
 
     def read(self):
-        ''' abstract of read method'''
+        u''' abstract of read method'''
         raise NotImplementedError
 
     @classmethod
     def generate_inputs(cls, config):
-        ''' abstract of generate_inputs method'''
+        u''' abstract of generate_inputs method'''
         raise NotImplementedError
