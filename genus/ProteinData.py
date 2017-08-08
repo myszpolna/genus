@@ -32,11 +32,11 @@ class ProteinData(InputData):
         ''' init Proteine '''
         super().__init__()
         self.path = path_dir
-        num = len(self.path)
-        self.name = self.path[-num:-4]
+        num = len(self.path.split('/'))
+        self.name = self.path.split('/')[num-1][:-4]
 
     def read(self):
-        ''' read for two columns data'''
+        ''' read two columns data'''
         data = []
         result = []
         with open(self.path) as file:

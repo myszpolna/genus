@@ -5,5 +5,6 @@ from .Worker import Worker
 from .ProteinData import ProteinData
 from .RNAData import RNAData
 from .Protein import ProteinWorker
+from .ProteinAnalysis import ProteinAnalysisWorker
 from .RNA import RNAWorker
 from .functions import *

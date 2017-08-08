@@ -24,6 +24,9 @@ def data_analysis(worker_class, input_class, config):
         thread.join()
     return workers
 
+def protein_structure(config):
+    '''run proteins deviding and analysis'''
+    return data_analysis(genus.ProteinAnalysisWorker, genus.ProteinData, config)
 
 def proteins_analysis(config):
     '''run proteins analysis from directory'''

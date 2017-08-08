@@ -34,7 +34,7 @@ class Worker(object):
         return workers
 
     @staticmethod
-    def __przelicznik(tab):
+    def przelicznik(tab):
         ''' remove empty spots'''
         jeden = list(chain.from_iterable((row[0], row[1]) for row in tab))
         for i in range(1, max(jeden)):
@@ -94,7 +94,7 @@ class Worker(object):
         return tab
 
     @staticmethod
-    def __genus_one_backbone(tab):
+    def genus_one_backbone(tab):
         '''compute genus from clean data '''
         n_chords = len(tab)
         n_spots = 4 * n_chords
@@ -144,9 +144,12 @@ class Worker(object):
         # print "Number of boundaries: %i, genus: %i" % (r,genus)
         return int(genus)
 
+    def remove_biff(self, tab):
+        return self.__resolve_bifurcations(self.przelicznik(tab), len(tab))
+
     def compute_genus(self):
         ''' methods for genus compute from self.data
-            You can use them only if You load data to self.data
+            You can use them only if You have self.cl_data
             Returns
             -------
             genus_ : int
@@ -156,6 +159,4 @@ class Worker(object):
                 data without biffurcations
         '''
         if self.cl_data:
-            self.nobiff_data_ = self.__resolve_bifurcations(
-                self.__przelicznik(self.cl_data), self.nr_chord)
-            return self.__genus_one_backbone(self.nobiff_data_)
+            return self.genus_one_backbone(self.remove_biff(self.cl_data))
