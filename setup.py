@@ -32,10 +32,10 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 setup(
     name='genus',
     version='1.0',
-    description='Compute genus for Protein structures in files',
+    description='Compute genus for Protein and RNA structures',
     long_description=long_description,
     keywords='Protein, Genus analysis',
-    url='https://github.com/sebkaz/genus_abstract',
+    url='https://github.com/sebkaz/genus',
     author='Joanna Sułkowska, Piotr Sułkowski, Sebastian Zając',
     author_email='s.zajac@ukw.edu.pl',
     license='GPL-3.0',

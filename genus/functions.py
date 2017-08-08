@@ -13,6 +13,7 @@ from genus.Threads import FactorizeThread
 
 
 def data_analysis(worker_class, input_class, config):
+    '''helper for Thread with map() method'''
     threads = []
     workers = worker_class.create_workers(input_class, config)
     for worker in workers:
@@ -25,24 +26,26 @@ def data_analysis(worker_class, input_class, config):
 
 
 def proteins_analysis(config):
+    '''run proteins analysis from directory'''
     return data_analysis(genus.ProteinWorker, genus.ProteinData, config)
 
 
 def rna_analysis(config):
+    '''run RNA analysis from directory'''
     return data_analysis(genus.RNAWorker, genus.RNAData, config)
 
 
 def results(data):
+    'helper to get info for plots'
     lengths = []
     chords = []
     genuses = []
     names = []
-    for el in data:
-        # print(el.__dict__)
-        if el.length > 0 and el.nr_chord > 0:
-            genuses.append(el.genus)
-            names.append(el.name)
-            lengths.append(el.length)
-            chords.append(el.nr_chord)
+    for element in data:
+        if element.length > 0 and element.nr_chord > 0:
+            genuses.append(element.genus)
+            names.append(element.name)
+            lengths.append(element.length)
+            chords.append(element.nr_chord)
 
     return names, lengths, chords, genuses

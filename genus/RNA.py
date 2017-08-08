@@ -1,26 +1,27 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 '''
-Analyse RNA from directory data.
-compute genus for all structure
-Parameters:
------------
-name - 4 letters name of structure
+    RNA worker class definition.
+    Load data, clean and compute genus
+    for all structure.
+    Parameters:
+    -----------
+    name: str - name of protein structure
 
-length - length of structure :
-max - min + 1
+    length: int - length of structure :
+        max_node - min_node + 1
 
-cl_data - list of clear data
+    cl_data: list - list of clear data
 
-nr_chord - number of chords in cl_data
+    nr_chord: int - number of chords in cl_data
 
-info - dict :
-    Atribures:
-    ---------
-    stats_acids : dict - number of four acids
-    stats_types : dict - number of all connections type
+    info: dict :
+        Atribures:
+        ---------
+        stats_acids : dict - number of four acids
+        stats_types : dict - number of all connections type
 
-genus - int : genus of all structure
+    genus: int - genus of all structure
 '''
 # Authors: Sebastian Zając  <s.zajac@uksw.edu.pl>
 #          Piotr Sułkowski  <psulkows@fuw.edu.pl>
@@ -53,6 +54,7 @@ class RNAWorker(Worker):
 
     @staticmethod
     def compute_length(tab):
+        '''length compute static method'''
         jeden = []
         for row in tab:
             jeden.append(row[0])
@@ -62,13 +64,14 @@ class RNAWorker(Worker):
         del jeden
         return maximal - minimal + 1
 
-    def __devide_data(self, tab):
+    @staticmethod
+    def __devide_data(tab):
         acids = []
         types = []
-        for el in tab:
-            acids.append(el[2])
-            acids.append(el[3])
-            types.append(el[4])
+        for element in tab:
+            acids.append(element[2])
+            acids.append(element[3])
+            types.append(element[4])
         return acids, types
 
     def __clear(self, tab):
@@ -101,8 +104,8 @@ class RNAWorker(Worker):
     def __zero_remove(tab):
         '''remove zero from data '''
         check = False
-        for el in tab:
-            if 0 in el:
+        for row in tab:
+            if 0 in row:
                 check = True
                 break
         if check:
