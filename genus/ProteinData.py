@@ -32,22 +32,28 @@ class ProteinData(InputData):
         u''' init Proteine '''
         super().__init__()
         self.path = path_dir
-        num = len(self.path.split('/'))
-        self.name = self.path.split('/')[num - 1][:-4]
+        self.name = self.__take_name_from_path(self.path)
 
     def read(self):
-        u''' read two columns data'''
+        u''' read two columns data
+             uzupełnić o wartości ujemne i zero !!!
+        '''
         data = []
         result = []
         with open(self.path) as file:
             for _, line in enumerate(file):
-                if '\t' in line:
-                    re.sub('\t', ' ', line)
+                line = re.sub('[\t|,-]', ' ', line)
                 tokens = line.split()
                 if len(tokens) == 2:
                     result = [int(x) for x in tokens]
                     data.append(result)
         return data
+
+    @staticmethod
+    def __take_name_from_path(path_dir):
+        path_split = path_dir.split('/')
+        num = len(path_split)
+        return path_split[num - 1].split('.')[0]
 
     @classmethod
     def generate_inputs(cls, config):

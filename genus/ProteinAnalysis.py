@@ -78,6 +78,15 @@ class ProteinAnalysisWorker(Worker):
     @staticmethod
     def __multiplicity(tab, minimum, maximum):
         u'''compute biffurcation numbers'''
+        ####
+        # Tutaj moge dodac tworzenie tabeli od min do max
+        # co jeden  - zamienic range(len(tab)) na enumerate
+        # wtedy w nastepnej funkcji jade po elementach tej
+        # tablicy i od razu mam licznik - potrzebny do odzyskiwania
+        # wartosci genusu oraz poprzedniej dlugosci
+        # jesli dlugosc danych się nie zmienia to nie liczę genusu tylko
+        # kopiuje poprzednią wartość z wyników
+        ####
         b1_b2_list = []
         for i in range(minimum, maximum + 1):
             b1 = 0
@@ -94,18 +103,23 @@ class ProteinAnalysisWorker(Worker):
         return b1_b2_list
 
     def devide_and_compute(self, mini, maxi, tab):
-        u'''Devide data and compute genus for all data +1'''
+        u'''Devide data and compute genus for all data with lag 1'''
         b1_b2_sum = 0
         counter = 0
         genuses = []
         data = []
+        length_data = 0
         for element in range(mini, maxi + 1):
             b1_b2_sum += self.b1_b2_list[counter]
             counter += 1
             data = [x for x in tab if x[1] <= b1_b2_sum and x[0] <= b1_b2_sum]
             if data != []:
-                data = self.przelicznik(data)
-                genuses.append(self.genus_one_backbone(data))
+                if len(data) != length_data:
+                    length_data = len(data)
+                    data = self.przelicznik(data)
+                    genuses.append(self.genus_one_backbone(data))
+                else:
+                    genuses.append(genuses[(len(genuses)-1)])
             else:
                 genuses.append(0)
         return genuses

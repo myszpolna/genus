@@ -78,6 +78,15 @@ class RNAAnalysisWorker(Worker):
     @staticmethod
     def __multiplicity(tab, minimum, maximum):
         u'''compute biffurcation numbers'''
+        ####
+        # Tutaj moge dodac tworzenie tabeli od min do max
+        # co jeden  - zamienic range(len(tab)) na enumerate
+        # wtedy w nastepnej funkcji jade po elementach tej
+        # tablicy i od razu mam licznik - potrzebny do odzyskiwania
+        # wartosci genusu oraz poprzedniej dlugosci
+        # jesli dlugosc danych się nie zmienia to nie liczę genusu tylko
+        # kopiuje poprzednią wartość z wyników
+        ####
         b1_b2_list = []
         for i in range(minimum, maximum + 1):
             b1 = 0
@@ -94,10 +103,14 @@ class RNAAnalysisWorker(Worker):
         return b1_b2_list
 
     def devide_and_compute(self, mini, maxi, tab):
+        '''
+            To tez trzeba zmienic i uzgodnić
+        '''
         b1_b2_sum = 0
         counter = 0
         genuses = []
         data = []
+        # test_length = 0
         for element in range(mini, maxi + 1):
             b1_b2_sum += self.b1_b2_list[counter]
             counter += 1

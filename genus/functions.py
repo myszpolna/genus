@@ -7,6 +7,7 @@
 #
 # License: GPL-3.0
 
+import numpy as np
 import genus
 
 from genus.Threads import FactorizeThread
@@ -56,4 +57,4 @@ def results(data):
             lengths.append(element.length)
             chords.append(element.nr_chord)
 
-    return names, lengths, chords, genuses
+    return names, np.array(lengths), np.array(chords), genuses

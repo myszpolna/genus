@@ -15,12 +15,6 @@ u'''
 
     nr_chord: int - number of chords in cl_data
 
-    info: dict :
-        Atribures:
-        ---------
-        stats_acids : dict - number of four acids
-        stats_types : dict - number of all connections type
-
     genus: int - genus of all structure
 '''
 # Authors: Sebastian Zając  <s.zajac@uksw.edu.pl>
