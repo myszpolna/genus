@@ -29,8 +29,8 @@ u'''
 #
 # License: GPL-3.0
 
-from genus.Worker import Worker
-from genus.stat import FrequencyList as fl
+from genus import Worker
+from genus import FrequencyList as fl
 
 
 class RNAWorker(Worker):

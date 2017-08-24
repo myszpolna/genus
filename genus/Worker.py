@@ -17,9 +17,9 @@ class Worker(object):
 
     def __init__(self, input_data):
         self.input_data = input_data
-        self.length = 0
-        self.cl_data = []
-        self.info = {}
+        #self.length = 0
+        #self.cl_data = []
+        #self.info = {}
 
     def map(self):
         u''' abstract map method'''

@@ -32,7 +32,7 @@ def protein_structure(config):
                          genus.ProteinData, config)
 
 
-def proteins_analysis(config):
+def protein_analysis(config):
     u'''run proteins analysis from directory'''
     return data_analysis(genus.ProteinWorker,
                          genus.ProteinData, config)

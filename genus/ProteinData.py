@@ -22,7 +22,7 @@ u''' Protein data class definition
 
 import re
 from os import listdir, path
-from genus.Data import InputData
+from genus import InputData
 
 
 class ProteinData(InputData):

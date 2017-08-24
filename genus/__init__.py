@@ -3,6 +3,7 @@ from .Threads import FactorizeThread
 from .Data import InputData
 from .Worker import Worker
 from .ProteinData import ProteinData
+from .ProteinClean import ProteinList
 from .RNAData import RNAData
 from .Protein import ProteinWorker
 from .ProteinAnalysis import ProteinAnalysisWorker

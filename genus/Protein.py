@@ -25,7 +25,8 @@ u'''
 
 import numpy as np
 
-from genus.Worker import Worker
+from genus import Worker
+from genus import ProteinList as pl
 
 
 class ProteinWorker(Worker):
@@ -34,48 +35,6 @@ class ProteinWorker(Worker):
     def map(self):
         u''' map work for one protein '''
         self.name = self.input_data.name
-        data = self.input_data.read()
-        self.length = self.compute_length(data)
-        self.cl_data = self.__clear(data)
-        self.nr_chord = len(self.cl_data)
+        self.cl_data = pl(self.input_data.read()).clean()
+        self.mini, self.maxi, self.length, self.nr_chord = self.cl_data.compute_info()
         self.genus = self.compute_genus()
-
-    def __clear(self, tab):
-        u''' clear data  '''
-        tab1 = self.__change(tab)
-        tab1 = self.__identical_chords(tab1)
-        tab1 = self.__double_chords(tab1)
-        tab1 = self.__zero_remove(tab1)
-        return tab1
-
-    @staticmethod
-    def compute_length(tab):
-        new_tab = np.array(tab)
-        return new_tab.max() - new_tab.min() + 1
-
-    @staticmethod
-    def __change(tab):
-        u''' change all chords from left to right'''
-        result = [[row[1], row[0]] if row[0] > row[
-            1] else [row[0], row[1]] for row in tab]
-        return result
-
-    @staticmethod
-    def __identical_chords(tab):
-        u''' remove identical chords '''
-        result = [list(x) for x in set(tuple(x) for x in tab)]
-        return sorted(result)
-
-    @staticmethod
-    def __double_chords(tab):
-        u''' remove in = out chords'''
-        result = [row for row in tab if row[0] != row[1]]
-        return result
-
-    @staticmethod
-    def __zero_remove(tab):
-        u'''remove zero from data '''
-        result = np.array(tab)
-        if 0 in result:
-            result = result + 1
-        return result.tolist()
