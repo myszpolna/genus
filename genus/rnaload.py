@@ -35,7 +35,7 @@ u''' RNA data class definition
 import re
 from os import listdir, path
 
-from genus.Data import InputData
+from genus import InputData
 
 TAB_TYPES = ["cWW", "tWW", "cWH", "cHW", "tWH",
              "tHW", "cWS", "cSW", "tWS", "tSW",

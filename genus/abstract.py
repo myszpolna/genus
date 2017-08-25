@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 u'''
-    Worker abstract class definition
+    Input Data and Worker abstract class definition
 '''
 # Authors: Sebastian Zając  <s.zajac@uksw.edu.pl>
 #          Piotr Sułkowski  <psulkows@fuw.edu.pl>
@@ -12,14 +12,24 @@ u'''
 from itertools import chain
 
 
+class InputData(object):
+    u'''Abstract class of Input Data '''
+
+    def read(self):
+        u''' abstract of read method'''
+        raise NotImplementedError
+
+    @classmethod
+    def generate_inputs(cls, config):
+        u''' abstract of generate_inputs method'''
+        raise NotImplementedError
+
+
 class Worker(object):
     u''' Worker abstract class '''
 
     def __init__(self, input_data):
         self.input_data = input_data
-        #self.length = 0
-        #self.cl_data = []
-        #self.info = {}
 
     def map(self):
         u''' abstract map method'''

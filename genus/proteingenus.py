@@ -36,5 +36,6 @@ class ProteinWorker(Worker):
         u''' map work for one protein '''
         self.name = self.input_data.name
         self.cl_data = pl(self.input_data.read()).clean()
-        self.mini, self.maxi, self.length, self.nr_chord = self.cl_data.compute_info()
+        self.mini, self.maxi,\
+        self.length, self.nr_chord = self.cl_data.compute_info()
         self.genus = self.compute_genus()
