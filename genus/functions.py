@@ -67,6 +67,15 @@ def results(data):
     plt.title('Genus of all structure')
     plt.grid(True)
     plt.savefig( "result.png")
+    plt.clf()
+    tab = np.array(chords)/np.array(lengths)
+    plt.plot(tab,genuses)
+    plt.xlabel('density_nch/length')
+    plt.ylabel('Genus')
+    plt.title('Genus')
+    plt.grid(True)
+    plt.savefig( "result2.png")
+    plt.clf()
     return names, np.array(lengths), np.array(chords), genuses
 
 

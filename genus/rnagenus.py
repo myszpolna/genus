@@ -38,6 +38,7 @@ class RNAWorker(Worker):
 
     def map(self):
         u''' map work for one protein '''
+        self.info = {}
         self.name = self.input_data.name
         data = self.input_data.read()
         if len(data) > 1:
