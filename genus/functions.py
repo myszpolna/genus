@@ -54,14 +54,13 @@ def results(data):
     chords = []
     genuses = []
     names = []
-    for element in data:
+    for _, element in enumerate(data):
         if element.length > 0 and element.nr_chord > 0:
             genuses.append(element.genus)
             names.append(element.name)
             lengths.append(element.length)
             chords.append(element.nr_chord)
-
-    plt.plot(lengths,genuses)
+            plt.plot(element.length,element.genus)
     plt.xlabel('Length')
     plt.ylabel('Genus')
     plt.title('Genus of all structure')
@@ -69,7 +68,8 @@ def results(data):
     plt.savefig( "result.png")
     plt.clf()
     tab = np.array(chords)/np.array(lengths)
-    plt.plot(tab,genuses)
+    for i, _ in enumerate(tab):
+        plt.plot(tab[i],genuses[i])
     plt.xlabel('density_nch/length')
     plt.ylabel('Genus')
     plt.title('Genus')
