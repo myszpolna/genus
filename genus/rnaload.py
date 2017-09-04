@@ -48,8 +48,7 @@ DOUBLE_NAMES = ['cHW', 'tHW', 'cSW', 'tSW', 'cSH', 'tSH']
 class RNAData(InputData):
     u'''Load RNA data '''
 
-    def __init__(self, path_dir, tab_types=TAB_TYPES
-                 ):
+    def __init__(self, path_dir, tab_types=TAB_TYPES):
         super().__init__()
         self.path = path_dir
         self.name = self.path[-8:-4]

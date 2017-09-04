@@ -42,11 +42,12 @@ class ProteinData(InputData):
         result = []
         with open(self.path) as file:
             for _, line in enumerate(file):
-                line = re.sub('[\t|,-]', ' ', line)
-                tokens = line.split()
-                if len(tokens) == 2:
-                    result = [int(x) for x in tokens]
-                    data.append(result)
+                if line.strip():
+                    line = re.sub('[\t|,-]', ' ', line)
+                    tokens = line.split()
+                    if len(tokens) == 2:
+                        result = [int(x) for x in tokens]
+                        data.append(result)
         return data
 
     @staticmethod

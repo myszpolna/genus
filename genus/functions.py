@@ -8,8 +8,12 @@
 # License: GPL-3.0
 
 import numpy as np
-import genus
+import pandas as pd
+import matplotlib as mpl
+mpl.use('TkAgg')
+import matplotlib.pyplot as plt
 
+import genus
 from genus.Threads import FactorizeThread
 
 
@@ -57,4 +61,39 @@ def results(data):
             lengths.append(element.length)
             chords.append(element.nr_chord)
 
+    plt.plot(lengths,genuses)
+    plt.xlabel('Length')
+    plt.ylabel('Genus')
+    plt.title('Genus of all structure')
+    plt.grid(True)
+    plt.savefig( "result.png")
     return names, np.array(lengths), np.array(chords), genuses
+
+
+def results_structure(data):
+    u'''helper to get info for plots'''
+    lengths = []
+    chords = []
+    genuses = []
+    names = []
+    for element in data:
+        if element.length > 0 and element.nr_chord > 0:
+            genuses.append(element.genuses)
+            names.append(element.name)
+            lengths.append(element.length)
+            chords.append(element.nr_chord)
+            x = range(1,element.length+1)
+            plt.plot(x, element.genuses)
+            plt.xlabel('Position in sequence')
+            plt.ylabel('Genus')
+            plt.title('Genus - ' + element.name)
+            plt.grid(True)
+            plt.savefig(element.name + ".png")
+            # plt.show()
+            plt.clf()
+            df1 = pd.DataFrame.from_items([('position', x)])
+            df1['genus'] = element.genuses
+            df1.to_csv(element.name+".csv", sep='\t', encoding='utf-8', index = False)
+
+    return names, lengths, chords, genuses
+
