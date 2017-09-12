@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-u'''
+'''
     Protein worker class definition.
     Devide from 5' to 3' and analyse
 '''
@@ -16,10 +16,10 @@ from genus import Worker
 from genus import ProteinList as pl
 
 class ProteinAnalysisWorker(Worker):
-    u''' class for devided proteine analysis'''
+    ''' class for devided proteine analysis'''
 
     def map(self):
-        u''' map work for one protein '''
+        ''' map work for one protein '''
         self.name = self.input_data.name
         self.cl_data = pl(self.input_data.read()).clean()
         self.mini, self.maxi, \
@@ -33,7 +33,7 @@ class ProteinAnalysisWorker(Worker):
 
     @staticmethod
     def __multiplicity(tab, minimum, maximum):
-        u'''compute biffurcation numbers'''
+        '''compute biffurcation numbers'''
         b1_b2_list = []
         for i in range(minimum, maximum + 1):
             b1 = 0
@@ -50,7 +50,7 @@ class ProteinAnalysisWorker(Worker):
         return b1_b2_list
 
     def devide_and_compute(self, mini, maxi, tab):
-        u'''Devide data and compute genus for all data with lag 1'''
+        '''Devide data and compute genus for all data with lag 1'''
         b1_b2_sum = 0
         counter = 0
         genuses = []

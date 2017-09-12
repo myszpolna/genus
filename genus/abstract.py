@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-u'''
+'''
     Input Data and Worker abstract class definition
 '''
 # Authors: Sebastian Zając  <s.zajac@uksw.edu.pl>
@@ -13,31 +13,31 @@ from itertools import chain
 
 
 class InputData(object):
-    u'''Abstract class of Input Data '''
+    '''Abstract class of Input Data '''
 
     def read(self):
-        u''' abstract of read method'''
+        ''' abstract of read method'''
         raise NotImplementedError
 
     @classmethod
     def generate_inputs(cls, config):
-        u''' abstract of generate_inputs method'''
+        ''' abstract of generate_inputs method'''
         raise NotImplementedError
 
 
 class Worker(object):
-    u''' Worker abstract class '''
+    ''' Worker abstract class '''
 
     def __init__(self, input_data):
         self.input_data = input_data
 
     def map(self):
-        u''' abstract map method'''
+        ''' abstract map method'''
         raise NotImplementedError
 
     @classmethod
     def create_workers(cls, input_class, config):
-        u''' workers creator'''
+        ''' workers creator'''
         workers = []
         for input_data in input_class.generate_inputs(config):
             workers.append(cls(input_data))
@@ -45,7 +45,7 @@ class Worker(object):
 
     @staticmethod
     def przelicznik(tab):
-        u''' remove empty spots'''
+        ''' remove empty spots'''
         jeden = list(chain.from_iterable((row[0], row[1]) for row in tab))
         for i in range(1, max(jeden)):
             if i not in jeden and i < max(jeden):
@@ -59,7 +59,7 @@ class Worker(object):
 
     @staticmethod
     def __bifurcations_part(tab, b_par, bif):
-        u''' part of biff function '''
+        ''' part of biff function '''
         while True:
             log = False
             for k in range(b_par - 1):
@@ -72,7 +72,7 @@ class Worker(object):
         return tab
 
     def __resolve_bifurcations(self, tab, n_chords):
-        u''' Methods for resolve biffurcations in structure '''
+        ''' Methods for resolve biffurcations in structure '''
         for i in range(1, 2 * n_chords):
             bif1 = []
             bif2 = []
@@ -105,7 +105,7 @@ class Worker(object):
 
     @staticmethod
     def genus_one_backbone(tab):
-        u'''compute genus from clean data '''
+        '''compute genus from clean data '''
         n_chords = len(tab)
         n_spots = 4 * n_chords
         remaining_chain = [1] * n_spots
@@ -158,7 +158,7 @@ class Worker(object):
         return self.__resolve_bifurcations(self.przelicznik(tab), len(tab))
 
     def compute_genus(self):
-        u''' methods for genus compute from self.data
+        ''' methods for genus compute from self.data
             You can use them only if You have self.cl_data
             Returns
             -------

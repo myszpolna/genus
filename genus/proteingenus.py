@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-u'''
+'''
     Protein worker class definition.
     Load data, clean and compute genus
     for all structure.
@@ -30,10 +30,10 @@ from genus import ProteinList as pl
 
 
 class ProteinWorker(Worker):
-    u''' class for proteine genus analysis'''
+    ''' class for proteine genus analysis'''
 
     def map(self):
-        u''' map work for one protein '''
+        ''' map work for one protein '''
         self.name = self.input_data.name
         self.cl_data = pl(self.input_data.read()).clean()
         self.mini, self.maxi,\
