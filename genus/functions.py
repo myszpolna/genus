@@ -29,31 +29,40 @@ def data_analysis(worker_class, input_class, config):
         thread.join()
     return workers
 
+'''
+    Compute genus from two columns data
+'''
+def two_columns(config):
+    '''run proteins analysis from directory'''
+    return data_analysis(genus.ProteinWorker,
+                         genus.ProteinData, config)
 
-def protein_structure(config):
+'''
+    Deviding two columns and compute genus from min_length
+    to max_length by one lag. Return object
+'''
+def two_columns_min_max(config):
     '''run proteins deviding and analysis'''
     return data_analysis(genus.ProteinAnalysisWorker,
                          genus.ProteinData, config)
 
 
-def protein_analysis(config):
-    '''run proteins analysis from directory'''
-    return data_analysis(genus.ProteinWorker,
-                         genus.ProteinData, config)
-
-
-def rna_analysis(config):
+'''
+   RNA structure Analysis from csv files
+'''
+def rna_data_from_file(config):
     '''run RNA analysis from directory'''
     return data_analysis(genus.RNAWorker,
                          genus.RNAData, config)
 
 
-def results(data):
+def rna_results(config):
     '''helper to get info for plots'''
     lengths = []
     chords = []
     genuses = []
     names = []
+    data = rna_data_from_file(config)
     for _, element in enumerate(data):
         if element.length > 0 and element.nr_chord > 0:
             genuses.append(element.genus)
@@ -79,12 +88,13 @@ def results(data):
     return names, np.array(lengths), np.array(chords), genuses
 
 
-def results_structure(data):
+def results_two_columns(config):
     '''helper to get info for plots'''
     lengths = []
     chords = []
     genuses = []
     names = []
+    data = two_columns_min_max(config)
     for element in data:
         if element.length > 0 and element.nr_chord > 0:
             genuses.append(element.genuses)

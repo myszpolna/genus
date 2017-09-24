@@ -35,7 +35,7 @@ class ProteinData(InputData):
         self.name = self.__take_name_from_path(self.path)
 
     def read(self):
-        u''' read two columns data
+        ''' read two columns data
              uzupełnić o wartości ujemne i zero !!!
         '''
         data = []
@@ -58,7 +58,7 @@ class ProteinData(InputData):
 
     @classmethod
     def generate_inputs(cls, config):
-        u'''read all files in dir with ends'''
+        '''read all files in dir with ends'''
         data_dir = config['data_dir']
         end = config['end_file']
         for name in [f for f in listdir(data_dir) if f.endswith(end)]:
